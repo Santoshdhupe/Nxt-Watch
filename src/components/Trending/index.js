@@ -73,7 +73,7 @@ class Trending extends Component {
         return (
           <ErrorContainer bgColor={bgColor}>
             <ErrorRoute />
-            <RetryButton onClick={this.getVideos}>Retry</RetryButton>
+            <RetryButton onClick={this.getTrendingVideos}>Retry</RetryButton>
           </ErrorContainer>
         )
       }}
@@ -97,7 +97,10 @@ class Trending extends Component {
         const bannerBgColor = isDarkTheme ? '#181818' : '#ebebeb'
         return (
           <TrendingVideosContainer data-testid="trending" bgColor={bgColor}>
-            <TrendingVideosBanner bannerBgColor={bannerBgColor}>
+            <TrendingVideosBanner
+              bannerBgColor={bannerBgColor}
+              data-testid="banner"
+            >
               <TrendingVideosLogoContainer logoBgColor={logoBgColor}>
                 <HiFire className="trending-videos-icon" />
               </TrendingVideosLogoContainer>

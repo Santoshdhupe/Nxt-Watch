@@ -78,10 +78,15 @@ export const EachIconContainer = styled.button`
   color: ${props => props.color};
   border: 0px;
   background-color: transparent;
+  font-family: Roboto;
+  margin-right: 20px;
+  font-weight: 500;
+  font-size: 14px;
 `
 export const LikeDislikeSaveWords = styled.p`
   font-family: Roboto;
   font-size: 14px;
+  color: ${props => props.color};
   margin-right: 20px;
   font-weight: 500;
 `

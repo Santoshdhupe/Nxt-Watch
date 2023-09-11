@@ -30,7 +30,7 @@ class Home extends Component {
       <NxtWatchContext.Consumer>
         {value => {
           const {isDarkTheme} = value
-          const bgColor = isDarkTheme ? '#0f0f0f' : '#f9f9f9'
+          const bgColor = isDarkTheme ? '#181818' : '#f9f9f9'
           return (
             <MainContainer>
               <Header />
@@ -41,7 +41,7 @@ class Home extends Component {
                     <BannerLeftSection>
                       <BannerWebsiteLogo
                         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                        alt="website logo"
+                        alt="nxt watch logo"
                       />
                       <BannerDescription>
                         Buy Nxt Watch Premium prepaid plans with UPI
@@ -51,6 +51,7 @@ class Home extends Component {
                     <CancelButton
                       type="button"
                       onClick={this.onclickCancelButton}
+                      data-testid="close"
                     >
                       <IoMdClose className="cancel-icon" />
                     </CancelButton>

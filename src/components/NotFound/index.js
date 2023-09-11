@@ -31,7 +31,7 @@ const NotFound = () => (
                 Page Not Found
               </NotFoundHeading>
               <NotFoundDescription color={descColor}>
-                We are sorry, the page you requested could not be found
+                we are sorry, the page you requested could not be found.
               </NotFoundDescription>
             </NotFoundContainer>
           </SidebarAndMainContainer>

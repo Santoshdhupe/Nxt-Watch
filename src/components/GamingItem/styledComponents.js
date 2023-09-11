@@ -11,7 +11,7 @@ export const GameImage = styled.img`
   width: 100%;
   margin-bottom: 10px;
 `
-export const GameTitle = styled.h1`
+export const GameTitle = styled.p`
   font-family: Roboto;
   color: ${props => props.color};
   font-size: 17px;

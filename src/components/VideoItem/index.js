@@ -27,7 +27,10 @@ const VideoItem = props => {
             <VideoListItem>
               <VideoImage src={video.thumbnailUrl} alt="video thumbnail" />
               <DescriptionAndProfileNameContainer>
-                <ProfileLogoImage src={video.channel.profileImgUrl} />
+                <ProfileLogoImage
+                  src={video.channel.profileImgUrl}
+                  alt="channel logo"
+                />
                 <VideoDescriptionContainer>
                   <VideoTitle color={videoTitleColor}>{video.title}</VideoTitle>
                   <VideoOwnerName color={videoDescColor}>

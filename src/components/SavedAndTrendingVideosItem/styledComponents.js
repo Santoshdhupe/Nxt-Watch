@@ -17,7 +17,7 @@ export const VideoDescriptionContainer = styled.div`
   flex-direction: column;
 `
 
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   font-family: Roboto;
   color: ${props => props.color};
   font-size: 18px;

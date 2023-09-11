@@ -71,7 +71,7 @@ class Gaming extends Component {
         return (
           <ErrorContainer bgColor={bgColor}>
             <ErrorRoute />
-            <RetryButton onClick={this.getVideos}>Retry</RetryButton>
+            <RetryButton onClick={this.getGamingVideos}>Retry</RetryButton>
           </ErrorContainer>
         )
       }}
@@ -95,7 +95,10 @@ class Gaming extends Component {
         const bannerBgColor = isDarkTheme ? '#181818' : '#ebebeb'
         return (
           <GamingVideosContainer data-testid="gaming" bgColor={bgColor}>
-            <GamingVideosBanner bannerBgColor={bannerBgColor}>
+            <GamingVideosBanner
+              bannerBgColor={bannerBgColor}
+              data-testid="banner"
+            >
               <GamingVideosLogoContainer bgColor={logoBgColor}>
                 <SiYoutubegaming className="gaming-videos-icon" />
               </GamingVideosLogoContainer>

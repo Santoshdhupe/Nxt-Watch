@@ -104,7 +104,7 @@ class VideoItemDetails extends Component {
         return (
           <ErrorContainer bgColor={bgColor}>
             <ErrorRoute />
-            <RetryButton onClick={this.getVideos}>Retry</RetryButton>
+            <RetryButton onClick={this.getVideoDetails}>Retry</RetryButton>
           </ErrorContainer>
         )
       }}
@@ -118,11 +118,11 @@ class VideoItemDetails extends Component {
   )
 
   onclickLikeButton = () => {
-    this.setState(prev => ({liked: !prev.liked, disliked: false}))
+    this.setState({liked: true, disliked: false})
   }
 
   onclickDislikeButton = () => {
-    this.setState(prev => ({liked: false, disliked: !prev.disliked}))
+    this.setState({liked: false, disliked: true})
   }
 
   renderSuccessView = () => (
@@ -142,7 +142,6 @@ class VideoItemDetails extends Component {
             addVideo({...videoDetails, saved: true})
           }
         }
-
         const onclickSaveButton = () => {
           this.setState(prev => ({saved: !prev.saved}), addOrRemoveVideo)
         }
@@ -158,82 +157,76 @@ class VideoItemDetails extends Component {
           <AiOutlineDislike className="Like-dislike-save-icons" />
         )
         return (
-          <MainContainer>
-            <Header />
-            <SidebarAndVideoContainer>
-              <SideBar />
-              <VideoDetailsContainer bgColor={bgColor}>
-                <ReactPlayer
-                  url={videoDetails.videoUrl}
-                  controls
-                  width="100%"
-                  height="450px"
-                />
-                <VideoDetailsDescriptionContainer>
-                  <VideoDetailsTitle color={videoTitleColor}>
-                    {videoDetails.title}
-                  </VideoDetailsTitle>
-                  <ViewsAndLikesContainer>
-                    <ViewsAndPublishedTimeCont>
-                      <VideoDetailsViews>
-                        {videoDetails.viewCount} views
-                      </VideoDetailsViews>
-                      <VideoDetailsPublishedDate>
-                        {formatDistanceToNow(
-                          new Date(videoDetails.publishedAt),
-                        )}
-                      </VideoDetailsPublishedDate>
-                    </ViewsAndPublishedTimeCont>
-                    <LikesContainer>
-                      <EachIconContainer
-                        type="button"
-                        onClick={this.onclickLikeButton}
-                        color={likedButtonColor}
-                      >
-                        {likeButton}
-                        <LikeDislikeSaveWords>Like</LikeDislikeSaveWords>
-                      </EachIconContainer>
-                      <EachIconContainer
-                        type="button"
-                        onClick={this.onclickDislikeButton}
-                        color={dislikedButtonColor}
-                      >
-                        {dislikeButton}
-                        <LikeDislikeSaveWords>Dislike</LikeDislikeSaveWords>
-                      </EachIconContainer>
-                      <EachIconContainer
-                        type="button"
-                        onClick={onclickSaveButton}
-                        color={saveButtonColor}
-                      >
-                        <RiPlayListAddFill className="Like-dislike-save-icons" />
-                        <LikeDislikeSaveWords>
-                          {saved ? 'Saved' : 'Save'}
-                        </LikeDislikeSaveWords>
-                      </EachIconContainer>
-                    </LikesContainer>
-                  </ViewsAndLikesContainer>
-                </VideoDetailsDescriptionContainer>
-                <HorizontalLine />
-                <VideoDetailsBottomContainer>
-                  <VideoDetailsVideoOwnerLogo
-                    src={videoDetails.profileImageUrl}
-                  />
-                  <VideoDetailsOwnerDescriptionCont>
-                    <VideoDetailsOwnerName color={videoTitleColor}>
-                      {videoDetails.name}
-                    </VideoDetailsOwnerName>
-                    <VideoDetailsSubscribers>
-                      {videoDetails.subscriberCount} subscribers
-                    </VideoDetailsSubscribers>
-                    <VideoDetailsDescription color={videoTitleColor}>
-                      {videoDetails.description}
-                    </VideoDetailsDescription>
-                  </VideoDetailsOwnerDescriptionCont>
-                </VideoDetailsBottomContainer>
-              </VideoDetailsContainer>
-            </SidebarAndVideoContainer>
-          </MainContainer>
+          <VideoDetailsContainer
+            data-testid="videoItemDetails"
+            bgColor={bgColor}
+          >
+            <ReactPlayer
+              url={videoDetails.videoUrl}
+              controls
+              width="100%"
+              height="450px"
+            />
+            <VideoDetailsDescriptionContainer>
+              <VideoDetailsTitle color={videoTitleColor}>
+                {videoDetails.title}
+              </VideoDetailsTitle>
+              <ViewsAndLikesContainer>
+                <ViewsAndPublishedTimeCont>
+                  <VideoDetailsViews>
+                    {videoDetails.viewCount} views
+                  </VideoDetailsViews>
+                  <VideoDetailsPublishedDate>
+                    {formatDistanceToNow(new Date(videoDetails.publishedAt))}
+                  </VideoDetailsPublishedDate>
+                </ViewsAndPublishedTimeCont>
+                <LikesContainer>
+                  <EachIconContainer
+                    type="button"
+                    onClick={this.onclickLikeButton}
+                    color={likedButtonColor}
+                  >
+                    {likeButton} Like
+                  </EachIconContainer>
+                  <EachIconContainer
+                    type="button"
+                    onClick={this.onclickDislikeButton}
+                    color={dislikedButtonColor}
+                  >
+                    {dislikeButton} Dislike
+                  </EachIconContainer>
+                  <EachIconContainer
+                    type="button"
+                    onClick={onclickSaveButton}
+                    color={saveButtonColor}
+                  >
+                    <RiPlayListAddFill className="Like-dislike-save-icons" />
+                    <LikeDislikeSaveWords>
+                      {saved ? 'Saved' : 'Save'}
+                    </LikeDislikeSaveWords>
+                  </EachIconContainer>
+                </LikesContainer>
+              </ViewsAndLikesContainer>
+            </VideoDetailsDescriptionContainer>
+            <HorizontalLine />
+            <VideoDetailsBottomContainer>
+              <VideoDetailsVideoOwnerLogo
+                src={videoDetails.profileImageUrl}
+                alt="channel logo"
+              />
+              <VideoDetailsOwnerDescriptionCont>
+                <VideoDetailsOwnerName color={videoTitleColor}>
+                  {videoDetails.name}
+                </VideoDetailsOwnerName>
+                <VideoDetailsSubscribers>
+                  {videoDetails.subscriberCount} subscribers
+                </VideoDetailsSubscribers>
+                <VideoDetailsDescription color={videoTitleColor}>
+                  {videoDetails.description}
+                </VideoDetailsDescription>
+              </VideoDetailsOwnerDescriptionCont>
+            </VideoDetailsBottomContainer>
+          </VideoDetailsContainer>
         )
       }}
     </NxtWatchContext.Consumer>
@@ -254,7 +247,15 @@ class VideoItemDetails extends Component {
   }
 
   render() {
-    return <>{this.renderFinalView()}</>
+    return (
+      <MainContainer>
+        <Header />
+        <SidebarAndVideoContainer>
+          <SideBar />
+          {this.renderFinalView()}
+        </SidebarAndVideoContainer>
+      </MainContainer>
+    )
   }
 }
 

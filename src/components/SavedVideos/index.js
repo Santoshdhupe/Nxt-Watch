@@ -27,12 +27,12 @@ const SavedVideos = () => (
       const bannerBgColor = isDarkTheme ? '#181818' : '#ebebeb'
       const descColor = isDarkTheme ? '#ffffff' : '#1e293b'
       return (
-        <SavedVideosBgCont data-testid="savedvideos">
+        <SavedVideosBgCont>
           <Header />
           <SidebarAndSavedVideosCont>
             <SideBar />
             {savedVideos.length === 0 ? (
-              <SavedVideosContainer bgColor={bgColor}>
+              <SavedVideosContainer data-testid="savedVideos" bgColor={bgColor}>
                 <NoSavedVideosImage
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
                   alt="no saved videos"
@@ -47,7 +47,10 @@ const SavedVideos = () => (
             ) : (
               <>
                 <SavedVideosContainer bgColor={bgColor}>
-                  <SavedVideosBanner bannerBgColor={bannerBgColor}>
+                  <SavedVideosBanner
+                    bannerBgColor={bannerBgColor}
+                    data-testid="banner"
+                  >
                     <SavedVideosLogoContainer logoBgColor={logoBgColor}>
                       <HiFire className="saved-videos-icon" />
                     </SavedVideosLogoContainer>
