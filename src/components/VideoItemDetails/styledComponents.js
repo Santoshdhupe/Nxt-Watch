@@ -31,11 +31,14 @@ export const RetryButton = styled.button`
   margin-bottom: 10px;
 `
 export const LoadingContainer = styled.div`
+  background-color: ${props => props.bgColor};
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100vh;
+  align-self: center;
+  padding-left: 400px;
 `
 export const VideoDetailsDescriptionContainer = styled.div`
   display: flex;
