@@ -81,9 +81,17 @@ class Trending extends Component {
   )
 
   renderLoadingView = () => (
-    <LoadingContainer data-testid="loader">
-      <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
-    </LoadingContainer>
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        const bgColor = isDarkTheme ? '#0f0f0f' : '#f9f9f9'
+        return (
+          <LoadingContainer data-testid="loader" bgColor={bgColor}>
+            <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+          </LoadingContainer>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 
   renderSuccessView = () => (
